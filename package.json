@@ -1,7 +1,7 @@
 {
   "name": "hmkb",
   "version": "1.0.0",
-  "description": "Welcome to Drunk Xmas!",
+  "description": "HMKB For Sale",
   "main": "app.js",
   "dependencies": {
     "ejs": "^2.3.4",
