@@ -22,6 +22,26 @@
 </head>
 <body>
 	<script>
+		/* Return last blog read */
+function lastBlog () {
+	localStorage.lastBlogRead = window.location.pathname;
+	return localStorage.lastBlogRead;
+}
+  
+/* Return all blogs read */
+function allBlogs() {
+	// Create blogsRead array if it doesn't exist
+	if (!localStorage.blogsRead) {
+		var blogs = [];
+	} else {
+		var blogs = JSON.parse(localStorage.blogsRead);
+	}
+	// Add current location to blogsRead
+	blogs.push(window.location.pathname);
+	localStorage.blogsRead = JSON.stringify(blogs);
+	return localStorage.blogsRead;
+}
+	
 		    dataLayer = [{
 	      'lastBlog':  lastBlog(),
 	      'allBlogs': allBlogs()
