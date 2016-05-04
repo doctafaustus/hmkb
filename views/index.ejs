@@ -18,6 +18,11 @@
 
 		ga('create', 'UA-71100209-1', 'auto');
 		ga('send', 'pageview');
+
+		ga(function(tracker) {
+			// Logs the tracker created above to the console.
+			console.log(tracker);
+		});
 	</script>
 </head>
 <body>
