@@ -17,33 +17,28 @@ app.listen(port, function(req, res) {
 
 // Routes
 app.get('/', function(req, res) {
-  var cookie = new Cookies(req, res);
-  var optimizelyClientCookie = cookie.get('optimizelyEndUserId');
-  var optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
+  const cookie = new Cookies(req, res);
+  const optimizelyClientCookie = cookie.get('optimizelyEndUserId');
+  const optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
   if (!optimizelyClientCookie || !optimizelyServerCookie) {
     const randomID = generateID();
-    const cookieAttributes = {
-      expires: setDate(180),
-      domain: 'hmkb.com',
-      sameSite: true
-    }
 
-    cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
-    cookie.set('optimizelyEndUserId', randomID, cookieAttributes);
+    cookie.set('optimizelyEndUserId-server', randomID, { expires: setDate(180), domain: 'hmkb.com', sameSite: true });
+    cookie.set('optimizelyEndUserId', randomID,  { expires: setDate(180), domain: 'hmkb.com', sameSite: true, httpOnly: false });
   }
   res.render('index.ejs');
 });
 
 
 function generateID() {
-  var timestamp = new Date().getTime();
-  var randomNum = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+  const timestamp = new Date().getTime();
+  const randomNum = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
   return `oeu${timestamp}-${randomNum}.lov`;
 }
 
 function setDate(days = 180) {
-  var targetDate = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
+  let targetDate = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
   targetDate = new Date().setTime(targetDate);
   return new Date(targetDate);
 }
