@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
 function generateID() {
   var timestamp = new Date().getTime();
   var randomNum = String(Math.floor(Math.random() * 10000000000000000)).padStart(6, '0');
-  return `oeu${timestamp}r0.${randomNum}`;
+  return `${timestamp}-${randomNum}`;
 }
 
 function setDate(days = 180) {
