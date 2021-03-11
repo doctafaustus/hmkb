@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
   var optimizelyCookie = cookie.get('optimizelyEndUserId');
   console.log('optimizelyCookie', optimizelyCookie);
   if (!optimizelyCookie) {
-    cookie.set('optimizelyEndUserId', generateID(), { expires: setDate(180), domain: 'hmkb.com' });
+    //cookie.set('optimizelyEndUserId', generateID(), { expires: setDate(180), domain: 'hmkb.com' });
   }
   res.render('index.ejs');
 });
