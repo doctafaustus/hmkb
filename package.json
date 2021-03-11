@@ -4,6 +4,7 @@
   "description": "HMKB For Sale",
   "main": "app.js",
   "dependencies": {
+    "cookies": "^0.8.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3"
   },
