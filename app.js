@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 
   if (!optimizelyClientCookie || !optimizelyServerCookie) {
     const randomID = generateID();
-    cookie.set('optimizelyEndUserId-server', randomID, { expires: setDate(180), domain: 'hmkb.com' });
+    cookie.set('optimizelyEndUserId-server', randomID, { expires: setDate(180), domain: 'hmkb.com', sameSite: true  });
     cookie.set('optimizelyEndUserId', randomID, { expires: setDate(180), domain: 'hmkb.com', httpOnly: false });
   }
   res.render('index.ejs');
