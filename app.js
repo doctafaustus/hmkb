@@ -18,10 +18,11 @@ app.listen(port, function(req, res) {
 // Routes
 app.get('/', function(req, res) {
   var cookie = new Cookies(req, res);
-  var optimizelyCookie = cookie.get('optimizelyEndUserId');
+  var optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
-  if (!optimizelyCookie) {
-    cookie.set('optimizelyEndUserId', generateID(), { expires: setDate(180), domain: 'hmkb.com' });
+  if (!optimizelyServerCookie) {
+    cookie.set('optimizelyEndUserId-server', generateID(), { expires: setDate(180), domain: 'hmkb.com' });
+    cookie.set('optimizelyEndUserId', generateID(), { expires: setDate(180), domain: 'hmkb.com', httpOnly: false });
   }
   res.render('index.ejs');
 });
