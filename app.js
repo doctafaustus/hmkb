@@ -18,9 +18,10 @@ app.listen(port, function(req, res) {
 // Routes
 app.get('/', function(req, res) {
   var cookie = new Cookies(req, res);
+  var optimizelyClientCookie = cookie.get('optimizelyEndUserId');
   var optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
-  if (!optimizelyServerCookie) {
+  if (!optimizelyClientCookie || !optimizelyServerCookie) {
     const randomID = generateID();
     cookie.set('optimizelyEndUserId-server', randomID, { expires: setDate(180), domain: 'hmkb.com' });
     cookie.set('optimizelyEndUserId', randomID, { expires: setDate(180), domain: 'hmkb.com', httpOnly: false });
