@@ -19,8 +19,9 @@ app.listen(port, function(req, res) {
 app.get('/', function(req, res) {
   var cookie = new Cookies(req, res);
   var optimizelyCookie = cookie.get('optimizelyEndUserId');
-  if (optimizelyCookie) {
-    cookie.set('optimizelyEndUserId', optimizelyCookie, { expires: setDate(180), domain: 'hmkb.com' });
+
+  if (!optimizelyCookie) {
+    cookie.set('optimizelyEndUserId', generateID(), { expires: setDate(180), domain: 'hmkb.com' });
   }
   res.render('index.ejs');
 });
