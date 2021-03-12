@@ -25,9 +25,9 @@ app.get('/', function(req, res) {
 
     const randomID = generateID();
     const cookieAttributes = {
-      expires = setDate(180),
-      domain = 'hmkb.com',
-      sameSite = true
+      expires: setDate(180),
+      domain: 'hmkb.com',
+      sameSite: true
     };
 
     cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
