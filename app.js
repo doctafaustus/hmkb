@@ -22,12 +22,15 @@ app.get('/', function(req, res) {
   const optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
   if (!optimizelyClientCookie || !optimizelyServerCookie) {
-    const randomID = generateID();
-    const expires = setDate(180);
-    const domain = 'hmkb.com';
+    const cookieAttributes = {
+      randomID = generateID(),
+      expires = setDate(180),
+      domain = 'hmkb.com',
+      sameSite = true
+    };
 
-    cookie.set('optimizelyEndUserId-server', randomID, { expires, domain, sameSite: true });
-    cookie.set('optimizelyEndUserId', randomID,  { expires, domain, sameSite: true, httpOnly: false });
+    cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
+    cookie.set('optimizelyEndUserId', randomID,  { ...cookieAttributes, httpOnly: false });
   }
   res.render('index.ejs');
 });
