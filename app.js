@@ -22,8 +22,9 @@ app.get('/', function(req, res) {
   const optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
   if (!optimizelyClientCookie || !optimizelyServerCookie) {
+
+    const randomID = generateID();
     const cookieAttributes = {
-      randomID = generateID(),
       expires = setDate(180),
       domain = 'hmkb.com',
       sameSite = true
