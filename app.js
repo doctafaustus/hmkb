@@ -23,9 +23,11 @@ app.get('/', function(req, res) {
 
   if (!optimizelyClientCookie || !optimizelyServerCookie) {
     const randomID = generateID();
+    const expires = setDate(180);
+    const domain = 'hmkb.com';
 
-    cookie.set('optimizelyEndUserId-server', randomID, { expires: setDate(180), domain: 'hmkb.com', sameSite: true });
-    cookie.set('optimizelyEndUserId', randomID,  { expires: setDate(180), domain: 'hmkb.com', sameSite: true, httpOnly: false });
+    cookie.set('optimizelyEndUserId-server', randomID, { expires, domain, sameSite: true });
+    cookie.set('optimizelyEndUserId', randomID,  { expires, domain, sameSite: true, httpOnly: false });
   }
   res.render('index.ejs');
 });
