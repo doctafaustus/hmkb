@@ -21,18 +21,20 @@ app.get('/', function(req, res) {
   const optimizelyClientCookie = cookie.get('optimizelyEndUserId');
   const optimizelyServerCookie = cookie.get('optimizelyEndUserId-server');
 
-  if (!optimizelyClientCookie || !optimizelyServerCookie) {
+  const cookieAttributes = {
+    expires: setDate(180),
+    domain: 'hmkb.com',
+    sameSite: true
+  };
 
+  if (!optimizelyClientCookie && !optimizelyServerCookie) {
     const randomID = generateID();
-    const cookieAttributes = {
-      expires: setDate(180),
-      domain: 'hmkb.com',
-      sameSite: true
-    };
-
     cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
     cookie.set('optimizelyEndUserId', randomID,  { ...cookieAttributes, httpOnly: false });
+  } else if (!optimizelyClientCookie && optimizelyServerCookie) {
+    cookie.set('optimizelyEndUserId', optimizelyServerCookie,  { ...cookieAttributes, httpOnly: false });
   }
+
   res.render('index.ejs');
 });
 
