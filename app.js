@@ -27,8 +27,8 @@ app.get('/', function(req, res) {
     sameSite: true
   };
 
-  // First time visitors - no client or server cookie
-  if (!optimizelyClientCookie && !optimizelyServerCookie) {
+  // First time visitors - no server cookie
+  if (!optimizelyServerCookie) {
     console.log('condition: 1');
     const randomID = generateID();
     cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
