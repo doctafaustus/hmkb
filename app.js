@@ -27,11 +27,22 @@ app.get('/', function(req, res) {
     sameSite: true
   };
 
+  // First time visitors - no client or server cookie
   if (!optimizelyClientCookie && !optimizelyServerCookie) {
+    console.log('condition: 1');
     const randomID = generateID();
     cookie.set('optimizelyEndUserId-server', randomID, cookieAttributes);
     cookie.set('optimizelyEndUserId', randomID,  { ...cookieAttributes, httpOnly: false });
-  } else if (!optimizelyClientCookie && optimizelyServerCookie) {
+  } 
+    // Expired ITP visitors - no client cookie but has server cookie
+    else if (!optimizelyClientCookie && optimizelyServerCookie) {
+      console.log('condition: 2');
+    cookie.set('optimizelyEndUserId-server', optimizelyServerCookie, cookieAttributes);
+    cookie.set('optimizelyEndUserId', optimizelyServerCookie,  { ...cookieAttributes, httpOnly: false });
+  } else {
+    console.log('condition: 3');
+    // Returning users - refresh existing client and server cookie expirations
+    cookie.set('optimizelyEndUserId-server', optimizelyServerCookie, cookieAttributes);
     cookie.set('optimizelyEndUserId', optimizelyServerCookie,  { ...cookieAttributes, httpOnly: false });
   }
 
