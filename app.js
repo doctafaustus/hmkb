@@ -49,6 +49,11 @@ app.get('/', function(req, res) {
   res.render('index.ejs');
 });
 
+// Redirect to recipe-saver-personal site as a shortcut link 
+app.get('/r', function(req, res) {
+  res.redirect('https://recipe-saver-personal.herokuapp.com/recipes/all');
+});
+
 
 function generateID() {
   const timestamp = new Date().getTime();
