@@ -10,6 +10,8 @@
 			color: #FF8F00;
 		}
 	</style>
+  <script src="https://unpkg.com/@optimizely/optimizely-sdk@3.5/dist/optimizely.browser.umd.min.js"></script>
+  <script src="https://cdn.optimizely.com/datafiles/CCnLUsNH3YixyJ6LPVFGM.json/tag.js"></script>
 	<script>
 		// (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		// (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,7 +21,24 @@
   <script src=https://cdn.optimizely.com/js/18372321941.js></script>
 </head>
 <body>
+  <script>
+    var optimizelyClientInstance = optimizelySdk.createInstance({
+      datafile: window.optimizelyDatafile,
+    });
+</script>
 	<h1>HMKB.com is for sale</h1>
 	<p>For inquiries, please email meow@fatcattitude.com</p>
+
+  <script>
+    var variation = optimizelyClientInstance.activate('hmkb_banner', '211');
+    console.log(optimizelyClientInstance);
+    if (variation === 'variation_1') {
+      document.body.insertAdjacentHTML('afterbegin', '<div>var 1</div>');
+    } else if (variation === 'variation_2') {
+      document.body.insertAdjacentHTML('afterbegin', '<div>var 2</div>');
+    } else {
+      document.body.insertAdjacentHTML('afterbegin', '<div>nothing</div>');
+    }
+  </script>
 </body>
 </html>
