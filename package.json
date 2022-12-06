@@ -6,7 +6,7 @@
   "dependencies": {
     "cookies": "^0.8.0",
     "ejs": "^2.3.4",
-    "express": "^4.13.3"
+    "express": "^4.17.3"
   },
   "devDependencies": {},
   "scripts": {
