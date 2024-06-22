@@ -54,8 +54,6 @@ app.get('/r', function(req, res) {
   res.redirect('https://recipe-saver-personal.herokuapp.com/recipes/all');
 });
 
-
-
 function generateID() {
   const timestamp = new Date().getTime();
   const randomNum = String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
