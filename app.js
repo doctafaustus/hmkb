@@ -66,7 +66,7 @@ app.get('/', function (req, res) {
 
 // Redirect to recipe-saver-personal site as a shortcut link
 app.get('/r', function (req, res) {
-  res.redirect('https://recipe-saver-personal.herokuapp.com/recipes/all');
+  res.redirect('https://recipe-saver-personal.onrender.com/recipes/all');
 });
 
 app.get('/kitty-kush', function (req, res) {
